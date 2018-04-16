@@ -17,8 +17,8 @@ class Package {
     }
 
     friend std::ostream& operator<<(std::ostream& out, const Package& p) {
-        return out << "Paquete listo: " << p.count << " tornillos de tipo "
-                   << p.type << " (mediana: " << p.width_median << ")";
+        return out << p.count << " tornillos de tipo " << p.type
+                   << " (mediana: " << p.width_median << ")";
     }
 };
 }  // namespace Screw

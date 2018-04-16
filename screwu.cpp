@@ -106,5 +106,5 @@ void ScrewU::handle_package(const Screw::Package& package) {
  * @param invalid The invalid screw type.
  */
 void ScrewU::handle_invalid_type(screw_type_t invalid) {
-    std::cout << "Tipo de tornillo invalido: " << invalid << std::endl;
+    std::cerr << "Tipo de tornillo invalido: " << invalid << std::endl;
 }
