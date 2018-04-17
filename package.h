@@ -2,6 +2,7 @@
 #define PACKAGE_H_
 
 #include <iostream>
+#include <string>
 #include "screw.h"
 
 namespace Screw {

@@ -24,13 +24,13 @@ class DeviceException : public std::exception {
 
 class Finished : public DeviceException {
    public:
-    explicit Finished() : DeviceException("") {
+    Finished() : DeviceException("") {
     }
 };
 
 class Stalled : public DeviceException {
    public:
-    explicit Stalled() : DeviceException("") {
+    Stalled() : DeviceException("") {
     }
 };
 

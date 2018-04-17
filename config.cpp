@@ -1,4 +1,5 @@
 #include "config.h"
+#include <string>
 
 /**
  * @brief Creates a Config object from a file.

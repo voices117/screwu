@@ -1,6 +1,8 @@
 #include "classifier.h"
 #include <arpa/inet.h>
+#include <algorithm>
 #include <iostream>
+#include <string>
 
 /**
  * @brief Construct a new Classifier.
