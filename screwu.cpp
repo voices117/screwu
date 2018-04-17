@@ -85,9 +85,11 @@ void ScrewU::print_packages(void) {
  */
 void ScrewU::print_remainders(void) {
     std::cout << "# Informe de remantentes" << std::endl;
-    for (auto remainder : this->packager.get_remainders()) {
-        std::cout << "* " << remainder.second << " tornillos de tipo "
-                  << remainder.first << std::endl;
+    for (const auto remainder : this->packager.get_remainders()) {
+        const std::string& type =
+            this->packager.get_screw_type_name(remainder.first);
+        std::cout << "* " << remainder.second << " tornillos de tipo " << type
+                  << std::endl;
     }
 }
 

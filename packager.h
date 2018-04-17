@@ -23,13 +23,17 @@ class Packager {
     Packager operator=(Packager& other) = delete;
     ~Packager();
 
+    /* actions */
     void add_batch(Screw::Batch batch);
     void add_observer(PackagerObserver& observer);
-    const std::map<std::string, int>& get_remainders(void) const;
+
+    /* queries */
+    const std::map<screw_type_t, int>& get_remainders(void) const;
+    const std::string& get_screw_type_name(screw_type_t t) const;
 
    private:
-    std::map<std::string, int> screws_count;
-    std::map<std::string, std::set<screw_width_t>> screws_width;
+    std::map<screw_type_t, int> screws_count;
+    std::map<screw_type_t, std::set<screw_width_t>> screws_width;
     const ScrewPackager::Config& config;
     std::mutex mutex;
     std::vector<PackagerObserver*> observers;
