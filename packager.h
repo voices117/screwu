@@ -4,6 +4,7 @@
 #include <map>
 #include <mutex>
 #include <set>
+#include <string>
 #include <vector>
 #include "batch.h"
 #include "config.h"

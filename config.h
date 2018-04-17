@@ -3,16 +3,17 @@
 
 #include <fstream>
 #include <iostream>
-#include <stdexcept>
 #include <map>
+#include <stdexcept>
+#include <string>
 #include "screw.h"
 
 namespace ScrewPackager {
 class Error : public std::exception {
    public:
-    Error(const char* msg) : msg(msg) {
+    explicit Error(const char* msg) : msg(msg) {
     }
-    Error(std::string msg) : msg(msg) {
+    explicit Error(std::string msg) : msg(msg) {
     }
     const char* what() const noexcept {
         return this->msg.c_str();
