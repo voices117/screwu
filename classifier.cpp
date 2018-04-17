@@ -2,15 +2,13 @@
 #include <arpa/inet.h>
 #include <iostream>
 
-using namespace Device;
-
 /**
  * @brief Construct a new Classifier.
  *
  * @param filename Name of the file of the classifier device.
  * This function throws an exception in case the device file was no found.
  */
-Classifier::Classifier(const std::string& filename) {
+Device::Classifier::Classifier(const std::string& filename) {
     this->input = new std::ifstream();
     this->input->open(filename, std::ios::in | std::ios::binary);
 
@@ -28,12 +26,12 @@ Classifier::Classifier(const std::string& filename) {
  *
  * @param other Ohter instance.
  */
-Classifier::Classifier(Classifier&& other) {
+Device::Classifier::Classifier(Classifier&& other) {
     std::swap(this->input, other.input);
     std::swap(this->name, other.name);
 }
 
-Classifier::~Classifier() {
+Device::Classifier::~Classifier() {
     delete this->input;
 }
 
@@ -45,7 +43,7 @@ Classifier::~Classifier() {
  * This function throws an exception in case there are no more pending batches
  * or a device has stalled/jammed.
  */
-Screw::Batch Classifier::get_batch(void) {
+Screw::Batch Device::Classifier::get_batch(void) {
     uint32_t data;
 
     /* reads a 32 bit integer from the input stream */
@@ -74,6 +72,6 @@ Screw::Batch Classifier::get_batch(void) {
  *
  * @return Device name.
  */
-const std::string& Classifier::get_name(void) const {
+const std::string& Device::Classifier::get_name(void) const {
     return this->name;
 }

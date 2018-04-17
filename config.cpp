@@ -1,14 +1,13 @@
 #include "config.h"
 
-using namespace ScrewPackager;
-
 /**
  * @brief Creates a Config object from a file.
  *
  * @param file_name Name of the file to read the configuration from.
  * @return Config The new config object.
  */
-Config Config::from_file(const std::string& file_name) {
+ScrewPackager::Config ScrewPackager::Config::from_file(
+    const std::string& file_name) {
     std::fstream fs{file_name, std::fstream::in};
     if (!fs) {
         throw Error{file_name +
@@ -20,10 +19,10 @@ Config Config::from_file(const std::string& file_name) {
     return p;
 }
 
-Config::Config() {
+ScrewPackager::Config::Config() {
 }
 
-Config::~Config() {
+ScrewPackager::Config::~Config() {
 }
 
 /**
@@ -33,7 +32,7 @@ Config::~Config() {
  * @param t Screw type.
  * @return int Number of screws required to build a package.
  */
-int Config::get_package_size(screw_type_t t) const {
+int ScrewPackager::Config::get_package_size(screw_type_t t) const {
     return this->screws_conf.at(t).limit;
 }
 
@@ -43,7 +42,8 @@ int Config::get_package_size(screw_type_t t) const {
  * @param t The screw type (ID).
  * @return Screw type name.
  */
-const std::string& Config::get_screw_type_name(screw_type_t t) const {
+const std::string& ScrewPackager::Config::get_screw_type_name(
+    screw_type_t t) const {
     return this->screws_conf.at(t).name;
 }
 
@@ -52,7 +52,7 @@ const std::string& Config::get_screw_type_name(screw_type_t t) const {
  *
  * @return Iterator to the different screw type configurations.
  */
-Config::const_iterator Config::begin() const {
+ScrewPackager::Config::const_iterator ScrewPackager::Config::begin() const {
     return this->screws_conf.begin();
 }
 
@@ -61,6 +61,6 @@ Config::const_iterator Config::begin() const {
  *
  * @return Last iterator.
  */
-Config::const_iterator Config::end() const {
+ScrewPackager::Config::const_iterator ScrewPackager::Config::end() const {
     return this->screws_conf.end();
 }

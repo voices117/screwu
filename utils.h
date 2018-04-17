@@ -13,13 +13,13 @@ namespace Utils {
  * @return T Median.
  */
 template <typename T>
-T median(std::vector<T>& elems) {
+float median(std::vector<T>& elems) {
     int index = elems.size() / 2;
     std::sort(elems.begin(), elems.end());
 
     if (elems.size() % 2 == 0) {
-        T sum = elems[index - 1] + elems[index];
-        return std::round(sum / 2);
+        float sum = elems[index - 1] + elems[index];
+        return sum / 2;
     } else {
         return elems[index];
     }

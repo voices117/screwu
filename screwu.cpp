@@ -1,8 +1,6 @@
 #include "screwu.h"
 #include <thread>
 
-using namespace App;
-
 /**
  * @brief Gets screw batches from a device until it closed.
  *
@@ -27,14 +25,14 @@ static void _handle_device(Device::Classifier& device,
  *
  * @param config The packager configuration.
  */
-ScrewU::ScrewU(const ScrewPackager::Config& config) : packager(config) {
+App::ScrewU::ScrewU(const ScrewPackager::Config& config) : packager(config) {
     this->packager.add_observer(*this);
 }
 
 /**
  * @brief Destroy the ScrewU object.
  */
-ScrewU::~ScrewU() {
+App::ScrewU::~ScrewU() {
     /* in case a thread was not finished */
     for (std::thread& w : this->workers) {
         if (w.joinable()) {
@@ -48,7 +46,7 @@ ScrewU::~ScrewU() {
  *
  * @param filename Device filename.
  */
-void ScrewU::add_device(const std::string& filename) {
+void App::ScrewU::add_device(const std::string& filename) {
     try {
         Device::Classifier device{filename};
 
@@ -65,7 +63,7 @@ void ScrewU::add_device(const std::string& filename) {
  * @brief Receives the batches from all the devices and prints the obtained
  * oackages.
  */
-void ScrewU::print_packages(void) {
+void App::ScrewU::print_packages(void) {
     /* collects screw batches from each device in individual worker threads */
     for (Device::Classifier& device : this->devices) {
         this->workers.push_back(std::thread(_handle_device, std::ref(device),
@@ -83,13 +81,13 @@ void ScrewU::print_packages(void) {
 /**
  * @brief Prints the remaining screws.
  */
-void ScrewU::print_remainders(void) {
+void App::ScrewU::print_remainders(void) {
     std::cout << "# Informe de remanentes" << std::endl;
     for (const auto remainder : this->packager.get_remainders()) {
         const std::string& type =
             this->packager.get_screw_type_name(remainder.first);
-        std::cout << "* " << remainder.second << " tornillos de tipo " << type
-                  << std::endl;
+        std::cout << "* " << remainder.second.size() << " tornillos de tipo "
+                  << type << std::endl;
     }
 }
 
@@ -98,7 +96,7 @@ void ScrewU::print_remainders(void) {
  *
  * @param package Package that has been built.
  */
-void ScrewU::handle_package(const Screw::Package& package) {
+void App::ScrewU::handle_package(const Screw::Package& package) {
     std::cout << "Paquete listo: " << package << std::endl;
 }
 
@@ -107,6 +105,6 @@ void ScrewU::handle_package(const Screw::Package& package) {
  *
  * @param invalid The invalid screw type.
  */
-void ScrewU::handle_invalid_type(screw_type_t invalid) {
+void App::ScrewU::handle_invalid_type(screw_type_t invalid) {
     std::cerr << "Tipo de tornillo invalido: " << invalid << std::endl;
 }
