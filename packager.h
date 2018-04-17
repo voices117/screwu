@@ -11,9 +11,16 @@
 #include "package.h"
 
 namespace Screw {
+/**
+ * @brief This class should be implemented by any object that wishes to be
+ * notified whenever a Packager completes a Package or receives an invalid screw
+ * type.
+ */
 class PackagerObserver {
    public:
+    /** This method is invoked when a package is completed. */
     virtual void handle_package(const Package& p) = 0;
+    /** This method is invoked when an invalid screw type is received. */
     virtual void handle_invalid_type(screw_type_t invalid) = 0;
 };
 

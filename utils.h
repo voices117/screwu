@@ -5,6 +5,13 @@
 #include <set>
 
 namespace Utils {
+/**
+ * @brief Calculates the median in a set of numeroc elements.
+ *
+ * @tparam T Numeric type.
+ * @param elems A set of elements where the median is looked up.
+ * @return T Median.
+ */
 template <typename T>
 T median(std::set<T>& elems) {
     auto it = elems.begin();

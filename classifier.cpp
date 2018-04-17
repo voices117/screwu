@@ -8,6 +8,7 @@ using namespace Device;
  * @brief Construct a new Classifier.
  *
  * @param filename Name of the file of the classifier device.
+ * This function throws an exception in case the device file was no found.
  */
 Classifier::Classifier(const std::string& filename) {
     this->input = new std::ifstream();
@@ -40,6 +41,9 @@ Classifier::~Classifier() {
  * @brief Gets a batch of screws from the classifier device.
  *
  * @return Batch of screws.
+ *
+ * This function throws an exception in case there are no more pending batches
+ * or a device has stalled/jammed.
  */
 Screw::Batch Classifier::get_batch(void) {
     uint32_t data;

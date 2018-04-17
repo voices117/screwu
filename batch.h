@@ -4,6 +4,10 @@
 #include "screw.h"
 
 namespace Screw {
+/**
+ * @brief Represents a batch of screws read from a device.
+ *
+ */
 class Batch {
    public:
     screw_type_t type;

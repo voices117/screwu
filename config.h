@@ -34,12 +34,17 @@ class ScrewConfig {
     }
 };
 
+/**
+ * @brief Contains the parsed configuration for the application.
+ */
 class Config {
    public:
     using const_iterator = std::map<screw_type_t, ScrewConfig>::const_iterator;
 
+    /** Class methods */
     static Config from_file(const std::string& file_name);
 
+    /** Constructiors/destructor */
     Config();
     Config(Config&& other) = default;
     ~Config();

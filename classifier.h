@@ -6,6 +6,10 @@
 #include "batch.h"
 
 namespace Device {
+/**
+ * @brief Device exceptions.
+ * Implemented in this same file to avoid unnecessary files.
+ */
 class DeviceException : public std::exception {
    public:
     explicit DeviceException(const std::string& message) : message(message) {
@@ -37,6 +41,10 @@ class ConnectionError : public DeviceException {
     }
 };
 
+/**
+ * @brief This class represents a classifier device that obtains it's input from
+ * a file.
+ */
 class Classifier {
    public:
     explicit Classifier(const std::string& filename);

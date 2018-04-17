@@ -9,11 +9,15 @@
 #include "packager.h"
 
 namespace App {
+/**
+ * @brief Main object of the application.
+ */
 class ScrewU : public Screw::PackagerObserver {
    public:
     explicit ScrewU(const ScrewPackager::Config& config);
     ~ScrewU();
 
+    /** api */
     void add_device(const std::string& filename);
     void print_packages(void);
     void print_remainders(void);

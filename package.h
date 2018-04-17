@@ -5,6 +5,10 @@
 #include "screw.h"
 
 namespace Screw {
+/**
+ * @brief Represents a package of screws that has been completed according to a
+ * Packager.
+ */
 class Package {
    public:
     std::string type;
