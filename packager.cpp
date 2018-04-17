@@ -32,7 +32,7 @@ void Packager::add_batch(Screw::Batch batch) {
         int p_size = this->config.get_package_size(batch.type);
 
         this->screws_count[batch.type] += batch.count;
-        this->screws_width[batch.type].insert(batch.width);
+        this->screws_width[batch.type].push_back(batch.width);
 
         /* checks if there are enough screws to build a package */
         while (this->screws_count.at(batch.type) >= p_size) {
@@ -51,7 +51,7 @@ void Packager::add_batch(Screw::Batch batch) {
             this->screws_count[batch.type] -= p_size;
             this->screws_width[batch.type].clear();
             if (this->screws_count[batch.type] > 0) {
-                this->screws_width[batch.type].insert(batch.width);
+                this->screws_width[batch.type].push_back(batch.width);
             }
         }
     } catch (const std::out_of_range& e) {

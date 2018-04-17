@@ -1,29 +1,27 @@
 #ifndef UTILS_H_
 #define UTILS_H_
 
-#include <cmath>
-#include <set>
+#include <algorithm>
+#include <vector>
 
 namespace Utils {
 /**
- * @brief Calculates the median in a set of numeroc elements.
+ * @brief Calculates the median in a group of numeric elements.
  *
  * @tparam T Numeric type.
- * @param elems A set of elements where the median is looked up.
+ * @param elems Elements where the median is looked up.
  * @return T Median.
  */
 template <typename T>
-T median(std::set<T>& elems) {
-    auto it = elems.begin();
-    std::advance(it, elems.size() / 2);
-
-    float nth = *it;
+T median(std::vector<T>& elems) {
+    int index = elems.size() / 2;
+    std::sort(elems.begin(), elems.end());
 
     if (elems.size() % 2 == 0) {
-        float sum = *--it + nth;
+        T sum = elems[index - 1] + elems[index];
         return std::round(sum / 2);
     } else {
-        return nth;
+        return elems[index];
     }
 }
 }  // namespace Utils

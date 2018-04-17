@@ -3,7 +3,6 @@
 
 #include <map>
 #include <mutex>
-#include <set>
 #include <string>
 #include <vector>
 #include "batch.h"
@@ -41,7 +40,7 @@ class Packager {
 
    private:
     std::map<screw_type_t, int> screws_count;
-    std::map<screw_type_t, std::set<screw_width_t>> screws_width;
+    std::map<screw_type_t, std::vector<screw_width_t>> screws_width;
     const ScrewPackager::Config& config;
     std::mutex mutex;
     std::vector<PackagerObserver*> observers;
