@@ -6,12 +6,9 @@
 #include "batch.h"
 
 namespace Device {
-
-enum class Status { working, stalled, finished };
-
 class DeviceException : public std::exception {
    public:
-    DeviceException(const std::string& message) : message(message) {
+    explicit DeviceException(const std::string& message) : message(message) {
     }
     const char* what() const noexcept {
         return this->message.c_str();
@@ -23,19 +20,20 @@ class DeviceException : public std::exception {
 
 class Finished : public DeviceException {
    public:
-    Finished() : DeviceException("") {
+    explicit Finished() : DeviceException("") {
     }
 };
 
 class Stalled : public DeviceException {
    public:
-    Stalled() : DeviceException("") {
+    explicit Stalled() : DeviceException("") {
     }
 };
 
 class ConnectionError : public DeviceException {
    public:
-    ConnectionError(const std::string& message) : DeviceException(message) {
+    explicit ConnectionError(const std::string& message)
+        : DeviceException(message) {
     }
 };
 

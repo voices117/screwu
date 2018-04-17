@@ -14,6 +14,7 @@ Classifier::Classifier(const std::string& filename) {
     this->input->open(filename, std::ios::in | std::ios::binary);
 
     if (this->input->fail()) {
+        delete this->input;
         throw ConnectionError{filename +
                               ": no se pudo conectar con el dispositivo"};
     }
