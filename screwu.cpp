@@ -84,7 +84,7 @@ void ScrewU::print_packages(void) {
  * @brief Prints the remaining screws.
  */
 void ScrewU::print_remainders(void) {
-    std::cout << "# Informe de remantentes" << std::endl;
+    std::cout << "# Informe de remanentes" << std::endl;
     for (const auto remainder : this->packager.get_remainders()) {
         const std::string& type =
             this->packager.get_screw_type_name(remainder.first);
